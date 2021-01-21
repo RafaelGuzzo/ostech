@@ -1,6 +1,6 @@
 package com.techrafa.ostech.domain.service;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,13 +10,13 @@ import com.techrafa.ostech.domain.model.Cliente;
 import com.techrafa.ostech.domain.model.OrdemServico;
 import com.techrafa.ostech.domain.model.StatusOrdemServico;
 import com.techrafa.ostech.domain.repository.ClienteRepository;
-import com.techrafa.ostech.domain.repository.OrderServicoRepository;
+import com.techrafa.ostech.domain.repository.OrdemServicoRepository;
 
 @Service
 public class GestaoOrdemServicoService {
 
 	@Autowired
-	private OrderServicoRepository orderServicoRepository;
+	private OrdemServicoRepository ordemServicoRepository;
 
 	@Autowired
 	private ClienteRepository clienteRepository;
@@ -27,9 +27,9 @@ public class GestaoOrdemServicoService {
 
 		ordemServico.setCliente(cliente);
 		ordemServico.setStatus(StatusOrdemServico.ABERTA);
-		ordemServico.setDataAbertura(LocalDateTime.now());
+		ordemServico.setDataAbertura(OffsetDateTime.now());
 
-		return orderServicoRepository.save(ordemServico);
+		return ordemServicoRepository.save(ordemServico);
 	}
 
 }

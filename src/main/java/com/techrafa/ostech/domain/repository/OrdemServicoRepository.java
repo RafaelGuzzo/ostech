@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.techrafa.ostech.domain.model.OrdemServico;
 
 @Repository
-public interface OrderServicoRepository extends JpaRepository<OrdemServico, Long> {
+public interface OrdemServicoRepository extends JpaRepository<OrdemServico, Long> {
 
 }
