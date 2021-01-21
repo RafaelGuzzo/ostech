@@ -7,7 +7,7 @@ import com.techrafa.ostech.domain.model.StatusOrdemServico;
 
 public class OrdemServicoModel {
 	private Long id;
-	private String nomeCliente;
+	private ClienteResumoModel cliente;
 	private String descricao;
 	private BigDecimal preco;
 	private StatusOrdemServico status;
@@ -20,14 +20,6 @@ public class OrdemServicoModel {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getNomeCliente() {
-		return nomeCliente;
-	}
-
-	public void setNomeCliente(String nomeCliente) {
-		this.nomeCliente = nomeCliente;
 	}
 
 	public String getDescricao() {
@@ -56,6 +48,14 @@ public class OrdemServicoModel {
 
 	public OffsetDateTime getDataAbertura() {
 		return dataAbertura;
+	}
+
+	public ClienteResumoModel getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(ClienteResumoModel cliente) {
+		this.cliente = cliente;
 	}
 
 	public void setDataAbertura(OffsetDateTime dataAbertura) {
