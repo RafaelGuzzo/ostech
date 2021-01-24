@@ -4,6 +4,7 @@ import java.time.OffsetDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.techrafa.ostech.api.model.Comentario;
 import com.techrafa.ostech.domain.exception.EntidadeNaoEncontradaException;
@@ -39,8 +40,7 @@ public class GestaoOrdemServicoService {
 	}
 
 	public Comentario adicionarComentario(Long ordemServicoId, String descricao) {
-		OrdemServico ordemServico = ordemServicoRepository.findById(ordemServicoId)
-				.orElseThrow(() -> new EntidadeNaoEncontradaException("Ordem de serviço não encontrada!"));
+		OrdemServico ordemServico = buscar(ordemServicoId);
 
 		Comentario comentario = new Comentario();
 		comentario.setDataEnvio(OffsetDateTime.now());
@@ -48,6 +48,19 @@ public class GestaoOrdemServicoService {
 		comentario.setOrdemServico(ordemServico);
 
 		return comentarioRepository.save(comentario);
+	}
+
+	public void finalizar(@PathVariable Long ordemServicoId) {
+		OrdemServico ordemServico = buscar(ordemServicoId);
+		ordemServico.finalizar();
+
+		ordemServicoRepository.save(ordemServico);
+
+	}
+
+	private OrdemServico buscar(Long ordemServicoId) {
+		return ordemServicoRepository.findById(ordemServicoId)
+				.orElseThrow(() -> new EntidadeNaoEncontradaException("Ordem de serviço não encontrada!"));
 	}
 
 }
